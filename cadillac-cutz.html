@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadillac Cutz — Premium Barbershop · Dubuque, Iowa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:      #0A0A0A;
+    --black-mid:  #141414;
+    --charcoal:   #1E1E1E;
+    --charcoal2:  #2A2A2A;
+    --gold:       #C9A84C;
+    --gold-light: #E2C170;
+    --gold-dim:   #8A6E2C;
+    --gold-pale:  #F0DFA0;
+    --white:      #F2EDE4;
+    --white-dim:  #C8C0B0;
+    --gray:       #6A6560;
+    --gray-light: #9A9590;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Subtle pinstripe texture */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: repeating-linear-gradient(
+      -60deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(201,168,76,0.018) 18px,
+      rgba(201,168,76,0.018) 19px
+    );
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; height: 72px;
+    background: rgba(10,10,10,0.96);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: rgba(201,168,76,0.3); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+  }
+  .nav-logo-emblem {
+    width: 38px; height: 38px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--gold); letter-spacing: -1px;
+    background: rgba(201,168,76,0.06);
+  }
+  .nav-logo-text {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .nav-logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600;
+    color: var(--white); letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .nav-logo-sub {
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--gray-light); text-decoration: none;
+    font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold); padding: 10px 24px;
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; border-radius: 1px;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 72px 0 0;
+    position: relative; overflow: hidden;
+  }
+
+  /* Gold gradient wash */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 70% at 75% 50%, rgba(201,168,76,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 30% 40% at 15% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .hero-content {
+    padding: 80px 56px;
+    position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 36px;
+  }
+  .hero-eyebrow-line {
+    width: 40px; height: 1px; background: var(--gold-dim);
+  }
+  .hero-eyebrow-text {
+    font-size: 10px; font-weight: 600; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 6.5vw, 100px);
+    font-weight: 300; line-height: 0.9;
+    color: var(--white); margin-bottom: 32px;
+    letter-spacing: -1px;
+  }
+  .hero-headline strong {
+    font-weight: 600; display: block;
+    background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 40%, var(--gold-dim) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-headline em {
+    font-style: italic; font-weight: 300;
+    color: var(--white-dim); font-size: 0.7em;
+    display: block; margin-top: 8px; letter-spacing: 2px;
+  }
+
+  .hero-sub {
+    font-size: 15px; line-height: 1.85;
+    color: var(--gray-light); max-width: 460px;
+    margin-bottom: 48px; font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+
+  .btn-gold {
+    background: var(--gold); color: var(--black);
+    padding: 15px 40px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.25s; display: inline-block;
+    border: 1px solid var(--gold);
+  }
+  .btn-gold:hover {
+    background: var(--gold-light);
+    box-shadow: 0 0 40px rgba(201,168,76,0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-gold {
+    background: transparent; color: var(--white-dim);
+    padding: 15px 40px;
+    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline-gold:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-divider {
+    width: 48px; height: 1px;
+    background: linear-gradient(to right, var(--gold-dim), transparent);
+    margin-bottom: 28px;
+  }
+
+  .hero-proof {
+    display: flex; gap: 40px;
+  }
+  .hp-item { display: flex; flex-direction: column; }
+  .hp-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 600;
+    color: var(--gold-light); line-height: 1;
+    letter-spacing: -1px;
+  }
+  .hp-label {
+    font-size: 10px; color: var(--gray);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-top: 4px; font-weight: 500;
+  }
+
+  /* Hero right — dark editorial panels */
+  .hero-visual {
+    padding: 80px 56px 80px 20px;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  .hero-panel-main {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero-panel-main::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px; color: var(--gold);
+    opacity: 0.08; position: absolute;
+    top: -10px; left: 24px; line-height: 1;
+    pointer-events: none;
+  }
+  .hpm-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 19px;
+    color: var(--white-dim); line-height: 1.6;
+    margin-bottom: 20px; position: relative; z-index: 1;
+  }
+  .hpm-author {
+    font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--gold-dim);
+  }
+  .hpm-stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; margin-bottom: 12px; }
+
+  .hero-panel-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .hero-panel-sm {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 24px;
+  }
+  .hps-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+  .hps-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 600;
+    color: var(--gold-light); line-height: 1;
+  }
+  .hps-sub {
+    font-size: 12px; color: var(--gray); margin-top: 4px; font-style: italic;
+  }
+
+  /* ── GOLD RULE ── */
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+    position: relative; z-index: 1;
+  }
+
+  /* ── ABOUT ── */
+  .about-section {
+    padding: 112px 56px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 96px; align-items: center;
+    position: relative; z-index: 1;
+    background: var(--black-mid);
+  }
+
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+  }
+  .se-line { width: 32px; height: 1px; background: var(--gold-dim); }
+  .se-text {
+    font-size: 10px; font-weight: 600; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3.5vw, 56px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--white); letter-spacing: -0.5px;
+    margin-bottom: 28px;
+  }
+  .section-title strong { font-weight: 600; color: var(--gold-light); }
+
+  .about-body p {
+    font-size: 15px; color: var(--gray-light); line-height: 1.9;
+    font-weight: 300; margin-bottom: 20px;
+  }
+  .about-body p strong { color: var(--white); font-weight: 500; }
+  .about-body p:last-child { margin-bottom: 0; }
+
+  /* About visual — dark stat card */
+  .about-visual {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 52px 48px;
+    position: relative; overflow: hidden;
+  }
+  .about-visual::before {
+    content: 'CC';
+    position: absolute; right: -20px; bottom: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 140px; font-weight: 700;
+    color: rgba(201,168,76,0.04);
+    line-height: 1; letter-spacing: -5px;
+    pointer-events: none;
+  }
+  .av-row {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    position: relative; z-index: 1;
+  }
+  .av-row:first-child { padding-top: 0; }
+  .av-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .av-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 600;
+    color: var(--gold); line-height: 1; letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .av-label {
+    font-size: 10px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--gray);
+    font-weight: 600; margin-bottom: 6px;
+  }
+  .av-desc {
+    font-size: 13px; color: var(--gray-light);
+    line-height: 1.6; font-style: italic;
+  }
+
+  /* ── SERVICES ── */
+  .services-section {
+    padding: 112px 56px;
+    background: var(--black);
+    position: relative; z-index: 1;
+  }
+  .services-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: end; margin-bottom: 72px;
+  }
+  .services-header p {
+    font-size: 15px; color: var(--gray-light); line-height: 1.85; font-weight: 300;
+  }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(201,168,76,0.08);
+  }
+
+  .service-card {
+    background: var(--black-mid); padding: 44px 36px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s; position: relative;
+  }
+  .service-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--gold-dim), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { background: var(--charcoal); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .svc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic; font-weight: 300;
+    color: var(--gold-dim); margin-bottom: 20px; display: block;
+    letter-spacing: 1px;
+  }
+  .svc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: var(--white); margin-bottom: 14px; line-height: 1.1;
+    letter-spacing: 0.3px;
+  }
+  .svc-desc {
+    font-size: 13px; color: var(--gray-light);
+    line-height: 1.75; font-weight: 300;
+  }
+  .svc-price {
+    margin-top: 20px;
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold-dim);
+  }
+
+  /* ── REVIEWS ── */
+  .reviews-section {
+    padding: 112px 56px;
+    background: var(--charcoal);
+    position: relative; z-index: 1;
+  }
+  .reviews-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 60px; flex-wrap: wrap; gap: 24px;
+  }
+  .reviews-score {
+    text-align: right;
+  }
+  .rs-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px; font-weight: 600;
+    color: var(--gold); line-height: 1; letter-spacing: -2px;
+  }
+  .rs-stars { color: var(--gold); font-size: 16px; letter-spacing: 3px; margin-bottom: 4px; }
+  .rs-label { font-size: 10px; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(201,168,76,0.06);
+  }
+  .review-card {
+    background: var(--black-mid); padding: 36px;
+    transition: background 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .review-card:hover { background: var(--charcoal2); }
+  .rc-stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; margin-bottom: 18px; }
+  .rc-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 17px;
+    color: var(--white-dim); line-height: 1.7;
+    flex: 1; margin-bottom: 24px;
+  }
+  .rc-author {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding-top: 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .rc-avatar {
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold-dim);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 600; color: var(--gold);
+    background: rgba(201,168,76,0.06); flex-shrink: 0;
+  }
+  .rc-name { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: var(--white-dim); text-transform: uppercase; }
+  .rc-when { font-size: 10px; color: var(--gray); margin-top: 3px; }
+
+  /* ── BOOKING CTA ── */
+  .cta-section {
+    padding: 112px 56px;
+    background: var(--black);
+    position: relative; z-index: 1; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-content { position: relative; z-index: 1; }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 5vw, 76px);
+    font-weight: 300; line-height: 0.95;
+    color: var(--white); letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+  .cta-title strong {
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold-dim));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cta-sub {
+    font-size: 15px; color: var(--gray-light); line-height: 1.8;
+    font-weight: 300; max-width: 420px;
+  }
+  .cta-actions {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 16px; align-items: flex-start;
+  }
+  .cta-note {
+    font-size: 12px; color: var(--gray); font-style: italic;
+  }
+
+  /* ── INFO ── */
+  .info-section {
+    padding: 80px 56px;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; position: relative; z-index: 1;
+  }
+  .info-block {
+    padding: 40px 32px;
+    border-right: 1px solid rgba(201,168,76,0.08);
+  }
+  .info-block:last-child { border-right: none; }
+  .ib-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold-dim);
+    margin-bottom: 16px; display: block;
+  }
+  .ib-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; color: var(--white-dim); line-height: 1.6;
+  }
+  .ib-value a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+  .ib-value a:hover { color: var(--gold-light); }
+  .hours-row {
+    display: flex; justify-content: space-between;
+    font-size: 13px; color: var(--gray-light);
+    padding: 5px 0; border-bottom: 1px solid rgba(201,168,76,0.05);
+    font-family: 'Inter', sans-serif;
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-day { font-weight: 500; color: var(--white-dim); }
+  .hours-closed { color: var(--gray); font-style: italic; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 36px 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+    position: relative; z-index: 1;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600;
+    color: var(--gold-dim); letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .footer-copy {
+    font-size: 11px; color: var(--gray);
+    letter-spacing: 1px;
+  }
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a {
+    font-size: 10px; color: var(--gray); text-decoration: none;
+    letter-spacing: 2px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .info-section { grid-template-columns: 1fr 1fr; }
+    .info-block { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.08); }
+    .info-block:last-child { border-bottom: none; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .hero-content { padding: 64px 24px 80px; }
+    .about-section, .cta-section { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+    .services-section, .reviews-section { padding: 72px 24px; }
+    .services-header { grid-template-columns: 1fr; gap: 24px; }
+    .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .info-section { padding: 60px 24px; grid-template-columns: 1fr 1fr; }
+    footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  /* Gold shimmer on headline */
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .hero-headline strong {
+    background-size: 200% auto;
+    animation: shimmer 5s linear infinite;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-emblem">CC</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Cadillac Cutz</span>
+      <span class="nav-logo-sub">Premium Barbershop · Dubuque, IA</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#info">Hours</a></li>
+  </ul>
+  <a href="tel:+15635905685" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Dubuque's Premier Barbershop</span>
+    </div>
+    <h1 class="hero-headline">
+      The Art<br>of the<br><strong>Perfect Cut.</strong>
+      <em>by Micah Cooper</em>
+    </h1>
+    <p class="hero-sub">
+      Cadillac Cutz isn't a quick clip. It's a full experience — meticulous, precise, and personal. Coop brings over a decade of craft to every chair, every time.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+15635905685" class="btn-gold">Book an Appointment</a>
+      <a href="#services" class="btn-outline-gold">View Services</a>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-proof">
+      <div class="hp-item">
+        <span class="hp-num">4.5</span>
+        <span class="hp-label">Google Rating</span>
+      </div>
+      <div class="hp-item">
+        <span class="hp-num">70<span style="font-size:22px">+</span></span>
+        <span class="hp-label">Reviews</span>
+      </div>
+      <div class="hp-item">
+        <span class="hp-num">1<span style="font-size:16px;font-style:italic;font-family:'Cormorant Garamond',serif">st</span></span>
+        <span class="hp-label">In Dubuque</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-panel-main">
+      <div class="hpm-stars">★★★★★</div>
+      <p class="hpm-quote">
+        Mr. Cooper is a master of his craft. We discussed a new vision for my hair — and we made it happen.
+      </p>
+      <span class="hpm-author">— Another Brazilian, Verified Review</span>
+    </div>
+    <div class="hero-panel-row">
+      <div class="hero-panel-sm">
+        <div class="hps-label">Signature Service</div>
+        <div class="hps-value">Straight<br>Razor</div>
+        <div class="hps-sub">Old school. Flawless finish.</div>
+      </div>
+      <div class="hero-panel-sm">
+        <div class="hps-label">Appointment Only</div>
+        <div class="hps-value">By<br>Appt.</div>
+        <div class="hps-sub">Call to reserve your spot.</div>
+      </div>
+    </div>
+    <div class="hero-panel-main" style="background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.25)">
+      <div class="hpm-stars">★★★★★</div>
+      <p class="hpm-quote" style="color:var(--gold-light)">
+        "Absolutely the best place to get your haircut in town. Great atmosphere, great people, just an all around fantastic experience. Old school barber quality."
+      </p>
+      <span class="hpm-author">— Matthew Huyer</span>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+  <div>
+    <div class="section-eyebrow">
+      <div class="se-line"></div>
+      <span class="se-text">The Barber</span>
+    </div>
+    <h2 class="section-title">Micah Cooper.<br><strong>Artist. Barber.</strong><br>Dubuque Original.</h2>
+    <div class="about-body">
+      <p>
+        Coop doesn't just cut hair — he <strong>studies it.</strong> Whether you've got waves, tight curls, a fade, or fine hair that needs careful handling, he takes the time to understand your hair before he ever picks up a tool.
+      </p>
+      <p>
+        His shop is a destination for people who've tried everywhere else and want it done right. Clients drive in from outside Dubuque. Some fly in. <strong>The cut speaks for itself.</strong>
+      </p>
+      <p>
+        The atmosphere is clean, calm, and VIP from the moment you sit down. No rush. No corners cut. Just craft.
+      </p>
+    </div>
+  </div>
+
+  <div class="about-visual">
+    <div class="av-row">
+      <div class="av-num">10<sup style="font-size:22px">+</sup></div>
+      <div class="av-label">Years of Craft</div>
+      <div class="av-desc">Honing a specialty that most barbers never develop — precision cuts for every texture.</div>
+    </div>
+    <div class="av-row">
+      <div class="av-num">70<sup style="font-size:22px">+</sup></div>
+      <div class="av-label">Google Reviews</div>
+      <div class="av-desc">Loyalists who come back, refer friends, and drive in from out of town.</div>
+    </div>
+    <div class="av-row">
+      <div class="av-num">#1</div>
+      <div class="av-label">In Dubuque</div>
+      <div class="av-desc">Consistently called the best barbershop in the city — and often beyond.</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow">
+        <div class="se-line"></div>
+        <span class="se-text">Services</span>
+      </div>
+      <h2 class="section-title">Every Service,<br><strong>Done Right.</strong></h2>
+    </div>
+    <p>Cadillac Cutz is an appointment-based shop. Call ahead to reserve your time — walk-ins are accommodated when possible but the experience is built around giving you the full attention you deserve.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="svc-num">i.</span>
+      <div class="svc-name">Signature Haircut</div>
+      <p class="svc-desc">A full consultation, precision cut, and finish tailored to your style and texture. Not a trim — a transformation.</p>
+      <div class="svc-price">Call for Pricing</div>
+    </div>
+    <div class="service-card">
+      <span class="svc-num">ii.</span>
+      <div class="svc-name">Straight Razor Shave</div>
+      <p class="svc-desc">Hot towel, premium product, and Coop's signature straight razor technique. The closest shave you've ever had.</p>
+      <div class="svc-price">Call for Pricing</div>
+    </div>
+    <div class="service-card">
+      <span class="svc-num">iii.</span>
+      <div class="svc-name">Beard Trim & Lineup</div>
+      <p class="svc-desc">Shaped, defined, and finished with precision. Whether you want clean lines or a natural taper — done exactly right.</p>
+      <div class="svc-price">Call for Pricing</div>
+    </div>
+    <div class="service-card">
+      <span class="svc-num">iv.</span>
+      <div class="svc-name">Cut & Shave Combo</div>
+      <p class="svc-desc">The full experience. A precision cut followed by a straight razor shave — the Cadillac treatment, start to finish.</p>
+      <div class="svc-price">Call for Pricing</div>
+    </div>
+    <div class="service-card">
+      <span class="svc-num">v.</span>
+      <div class="svc-name">Specialty & Textured Hair</div>
+      <p class="svc-desc">Curly, coily, wavy, or fine — Coop handles what most barbers can't. He works with your hair, not against it.</p>
+      <div class="svc-price">Call for Pricing</div>
+    </div>
+    <div class="service-card">
+      <span class="svc-num">vi.</span>
+      <div class="svc-name">Kids' Cuts</div>
+      <p class="svc-desc">Patient, calm, and thorough with younger clients. Parents leave impressed. Kids leave looking sharp.</p>
+      <div class="svc-price">Call for Pricing</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ── REVIEWS ── -->
+<section class="reviews-section" id="reviews">
+  <div class="reviews-header">
+    <div>
+      <div class="section-eyebrow">
+        <div class="se-line"></div>
+        <span class="se-text">Client Reviews</span>
+      </div>
+      <h2 class="section-title">What Clients<br><strong>Say.</strong></h2>
+    </div>
+    <div class="reviews-score">
+      <div class="rs-stars">★★★★★</div>
+      <div class="rs-num">4.5</div>
+      <div class="rs-label">Google · 70+ Reviews</div>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">The absolute finest cut you'll find in Dubuque, and honestly anywhere else as well. Good dude, good conversation, top tier cut.</p>
+      <div class="rc-author">
+        <div class="rc-avatar">C</div>
+        <div>
+          <div class="rc-name">Cody Brainard</div>
+          <div class="rc-when">3 months ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">I just got the best haircut of my life. The whole experience was amazing from beginning to end. New to the city, from CA, and Cadillac Cutz got me right. Thank you Micah!</p>
+      <div class="rc-author">
+        <div class="rc-avatar">M</div>
+        <div>
+          <div class="rc-name">mr__ nugget</div>
+          <div class="rc-when">2 years ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">Mr. Cooper is a master of his craft. I have very curly hair which I wear at medium length with a side part. We discussed a new vision — and we made it happen.</p>
+      <div class="rc-author">
+        <div class="rc-avatar">A</div>
+        <div>
+          <div class="rc-name">Another Brazilian</div>
+          <div class="rc-when">2 years ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">Absolutely the best place to get your haircut in town. Great atmosphere, great people, just an all around fantastic experience. Old school barber quality — will not let you leave unhappy.</p>
+      <div class="rc-author">
+        <div class="rc-avatar">M</div>
+        <div>
+          <div class="rc-name">Matthew Huyer</div>
+          <div class="rc-when">3 years ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">Came in for a cut and a shave — best customer service I have ever had. Makiah was absolutely amazing. I am very iffy about barbers and he was top notch. Today I found a lifetime barber.</p>
+      <div class="rc-author">
+        <div class="rc-avatar">L</div>
+        <div>
+          <div class="rc-name">Leah Swanson</div>
+          <div class="rc-when">5 years ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">It was a mind blowing experience — what I would consider as an art, and his generosity at the end. I can not recommend this place enough.</p>
+      <div class="rc-author">
+        <div class="rc-avatar">A</div>
+        <div>
+          <div class="rc-name">Agata Malik</div>
+          <div class="rc-when">1 year ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-content">
+    <div class="section-eyebrow">
+      <div class="se-line"></div>
+      <span class="se-text">Book Your Appointment</span>
+    </div>
+    <h2 class="cta-title">Ready for<br>the <strong>Cadillac</strong><br>Treatment?</h2>
+    <p class="cta-sub">Appointments fill fast. Call to reserve your spot and tell Coop what you're working with — he'll handle the rest.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="tel:+15635905685" class="btn-gold">Call to Book — (563) 590-5685</a>
+    <p class="cta-note">Appointment-based. Walk-ins welcome when available.</p>
+  </div>
+</section>
+
+<!-- ── INFO ── -->
+<section class="info-section" id="info">
+  <div class="info-block">
+    <span class="ib-label">Phone</span>
+    <div class="ib-value"><a href="tel:+15635905685">(563) 590-5685</a></div>
+  </div>
+  <div class="info-block">
+    <span class="ib-label">Location</span>
+    <div class="ib-value">Dubuque, Iowa</div>
+  </div>
+  <div class="info-block">
+    <span class="ib-label">Hours</span>
+    <div class="ib-value">
+      <div class="hours-row"><span class="hours-day">Mon–Fri</span><span>By Appointment</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span>By Appointment</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-closed">Closed</span></div>
+    </div>
+  </div>
+  <div class="info-block">
+    <span class="ib-label">Booking</span>
+    <div class="ib-value" style="font-size:14px;font-family:'Inter',sans-serif;line-height:1.7;color:var(--gray-light)">Call or text to schedule. Walk-ins accommodated when the chair is open.</div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Cadillac Cutz</div>
+  <p class="footer-copy">© 2025 Cadillac Cutz · Dubuque, Iowa · All Rights Reserved</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#info">Hours</a></li>
+  </ul>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+</script>
+</body>
+</html>
